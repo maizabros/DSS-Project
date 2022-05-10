@@ -1,0 +1,7 @@
+mesh: "/assets/daes/dam.dae"
+material: "/builtins/materials/model.material"
+textures: "/assets/images/plaster_grey_04_diff_4k.jpg"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

@@ -1,0 +1,7 @@
+mesh: "/assets/daes/power_house_2.dae"
+material: "/builtins/materials/model.material"
+textures: "/assets/images/green_metal_rust_rough_2k@channels=G.png"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"
