@@ -15,7 +15,7 @@ package = com.defold.example.basic3d
 
 [project]
 dependencies = 
-title = DSS Project
+title = Basic 3D project
 developer = Uwaga
 
 [physics]

@@ -1,3 +1,7 @@
+key_trigger {
+  input: KEY_S
+  action: "show_turbines"
+}
 mouse_trigger {
   input: MOUSE_WHEEL_UP
   action: "zoom_in"

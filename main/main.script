@@ -4,7 +4,7 @@ function init(self)
 	msg.post("camera", "acquire_camera_focus")
 	msg.post("@render:", "clear_color", { color = vmath.vector4(0.527, 0.805, 0.918, 0) } )
 
-	self.models = {"#dam", "#gates", "#penstocks", "#power_house_1", "#power_house_2", "#turbine_1", "#turbine_2", "#turbine_3", "#turbine_4"}
+	self.models = {"#dam", "#gates", "#penstocks", "/power_houses#power_house_1", "/power_houses#power_house_2", "#turbine_1", "#turbine_2", "#turbine_3", "#turbine_4"}
 
 	for k, v in pairs(self.models) do
 		pos = go.get_position(v)
@@ -19,33 +19,23 @@ function on_input(self, action_id, action)
 	
 	if action_id == hash("zoom_in") and action.value == 1 then
 		self.zoom = self.zoom + 0.05
-		go.set_scale(self.zoom)
 		for k, v in pairs(self.models) do
 			pos = go.get_position(v)
+			go.set_scale(self.zoom,v)
 			model.set_constant(v, "light", vmath.vector4(pos.x * self.zoom, (pos.y + 10) * self.zoom, (pos.z + 20) * self.zoom, 0))
 		end
 	elseif action_id == hash("zoom_out") and action.value == 1 then
 		self.zoom = self.zoom - 0.05
-		go.set_scale(self.zoom)
 		for k, v in pairs(self.models) do
 			pos = go.get_position(v)
+			go.set_scale(self.zoom,v)
 			model.set_constant(v, "light", vmath.vector4(pos.x * self.zoom, (pos.y + 10) * self.zoom, (pos.z + 20) * self.zoom, 0))
 		end
-	elseif action_id == hash("touch") and action.pressed then
+	elseif action_id == hash("show_turbines") and action.pressed then
 		if self.show_turbs then
-			-- pos1 = go.get_position("#power_house_1")
-			-- pos2 = go.get_position("#power_house_2")
-			-- go.set_position(vmath.vector3(pos1.x, pos1.y + 200, pos1.z), "#power_house_1")
-			-- go.set_position(vmath.vector3(pos2.x, pos2.y + 200, pos2.z), "#power_house_2")
-			go.animate("#power_house_1", "tint.w", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_INOUTQUAD, 0)
-			go.animate("#power_house_2", "tint.w", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_INOUTQUAD, 0)
+			go.set_position(vmath.vector3(0, 0, 0), "power_houses")
 		else
-			-- pos1 = go.get_position("#power_house_1")
-			-- pos2 = go.get_position("#power_house_2")
-			-- go.set_position(vmath.vector3(pos1.x, pos1.y - 200, pos1.z), "#power_house_1")
-			-- go.set_position(vmath.vector3(pos2.x, pos2.y - 200, pos2.z), "#power_house_2")
-			go.animate("#power_house_1", "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INOUTQUAD, 1)
-			go.animate("#power_house_2", "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INOUTQUAD, 1)
+			go.set_position(vmath.vector3(0, 12, 0),"power_houses")
 		end
 		self.show_turbs = not self.show_turbs
 	end
